@@ -125,7 +125,7 @@ private void verifyCode(String code)
         public void onComplete(@NonNull Task<AuthResult> task) {
             if(task.isSuccessful())
             {   pBar.setVisibility(View.GONE);
-                Intent gSignIn = new Intent(getContext(), MainActivity.class);
+                Intent gSignIn = new Intent(getContext(), InformationForm.class);
                 gSignIn.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(gSignIn);
 

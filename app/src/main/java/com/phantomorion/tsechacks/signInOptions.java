@@ -17,20 +17,26 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class signInOptions extends AppCompatActivity implements View.OnClickListener {
     private final int RC_SIGN_IN = 1;
     static GoogleSignInClient mGoogleSignInClient;
     FirebaseAuth mAuth;
-    SignInButton googleSignIn;
+    Button googleSignIn;
     Button pnoSignIn;
     FragmentManager fm;
+    private FirebaseFirestore fdb=FirebaseFirestore.getInstance();
+    private CollectionReference cref=fdb.collection("Users");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +48,7 @@ public class signInOptions extends AppCompatActivity implements View.OnClickList
                 .requestEmail()
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(signInOptions.this, gso);
-        googleSignIn = (SignInButton) findViewById(R.id.googleSignIn);
+        googleSignIn = (Button) findViewById(R.id.googleSignIn);
         googleSignIn.setOnClickListener(this);
         pnoSignIn=findViewById(R.id.pnoSignIn);
         pnoSignIn.setOnClickListener(this);
@@ -116,10 +122,23 @@ public class signInOptions extends AppCompatActivity implements View.OnClickList
 
     private void updateUI(FirebaseUser user) {
 
+        UserDetails userDetails =new UserDetails(mAuth.getCurrentUser().getDisplayName(),mAuth.getCurrentUser().getEmail(),""+19,"USER","Male");
+        cref.document(mAuth.getCurrentUser().getDisplayName()).set(userDetails).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Toast.makeText(signInOptions.this,"Welcome to the family!!",Toast.LENGTH_LONG).show();
+                startActivity(new Intent(signInOptions.this,MainActivity.class));
+                finish();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(signInOptions.this,"Something Went Wrong",Toast.LENGTH_LONG).show();
+            }
+        });
 
-        Intent gSignIn = new Intent(signInOptions.this, MainActivity.class);
-        startActivity(gSignIn);
-        finish();
+    }
+
+
     }
     //Google SignIn End
-}

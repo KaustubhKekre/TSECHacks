@@ -1,26 +1,32 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-<ImageView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:src="@drawable/nointernet"
-    android:scaleType="fitXY"/>
-<Button
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignParentBottom="true"
-    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-    android:text="Retry"
-    android:textStyle="bold"
-    android:layout_margin="3dp"
-    android:id="@+id/retry"
-    android:textColor="@color/colorAccent"
-    android:background="@color/colorPrimaryDark"
-    android:layout_centerHorizontal="true"
-    />
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="0dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/no_internet" />
+
+    <Button
+        android:layout_marginBottom="20dp"
+        android:id="@+id/retry"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="35dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+
+        android:background="@drawable/red_button"
+        android:text="Retry"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+        android:textColor="@color/white"
+        android:textStyle="bold" />
 
 </RelativeLayout>
