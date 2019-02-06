@@ -16,6 +16,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".signInOptions"></activity>
+        <activity android:name=".NoInternet"
+
+            android:label="No Internet Connection">
+
+        </activity>
     </application>
 
 </manifest>

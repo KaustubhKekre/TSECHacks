@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "173414782493",
+    "firebase_url": "https://tsechacks.firebaseio.com",
+    "project_id": "tsechacks",
+    "storage_bucket": "tsechacks.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:173414782493:android:4f8d39c894ce885a",
+        "android_client_info": {
+          "package_name": "com.phantomorion.tsechacks"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "173414782493-ov0lspaqj9kbp35klfrk31aaph3p4flm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.phantomorion.tsechacks",
+            "certificate_hash": "ef194b3567deb71a6e1ae24b2d785c7fe4205711"
+          }
+        },
+        {
+          "client_id": "173414782493-4didf59t95ah9omlhee96elat866n8c4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDS8dg7mxlI8BAAffvJBPWwLfyno2alD_o"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "173414782493-4didf59t95ah9omlhee96elat866n8c4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
