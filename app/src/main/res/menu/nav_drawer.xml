@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_events"
+            android:icon="@drawable/events"
+            android:title="Events"
+
+            />
+        <item
+            android:id="@+id/nav_leaderboard"
+            android:icon="@drawable/leaderboard"
+            android:title="Leaderboard"
+            />
+    </group>
+
+
+    <item android:title="Donate"
+        >
+        <menu>
+            <group android:checkableBehavior="single">
+                <item android:title="Money"
+                    android:id="@+id/nav_money"
+                    android:icon="@drawable/money"/>
+                <item android:title="Items"
+                    android:id="@+id/nav_items"
+                    android:icon="@drawable/items"
+                    />
+            </group>
+
+        </menu>
+    </item>
+
+    <item android:title="Settings"
+        >
+        <menu>
+            <group>
+                <item android:title="Profile"
+                    android:id="@+id/nav_profile"
+                    android:icon="@drawable/profile"/>
+                <item android:title="Log Out"
+                    android:id="@+id/nav_logOut"
+                    android:icon="@drawable/logout"
+                    />
+            </group>
+
+        </menu>
+    </item>
+
+
+</menu>

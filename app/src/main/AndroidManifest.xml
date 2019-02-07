@@ -4,23 +4,29 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:icon="@drawable/logohackathon"
+        android:label="N-Jiyo"
+        android:roundIcon="@drawable/logohackathon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
+
+        </activity>
+        <activity android:name=".signInOptions" />
+        <activity
+            android:name=".NoInternet"
+            android:label="No Internet Connection" />
+        <activity android:name=".InformationForm" />
+        <activity android:name=".UserMain" />
+        <activity android:name=".BottomNavigationMainActivity"></activity>
+        <activity android:name=".AddEventsAdminForm" />
+        <activity android:name=".splashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".signInOptions" />
-        <activity
-            android:name=".NoInternet"
-            android:label="No Internet Connection"></activity>
-        <activity android:name=".InformationForm"></activity>
     </application>
 
 </manifest>

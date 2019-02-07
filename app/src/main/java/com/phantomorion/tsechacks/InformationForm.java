@@ -25,8 +25,8 @@ public class InformationForm extends AppCompatActivity {
     AutoCompleteTextView mName,mEmail,mAge;
     String gender;
     String smName,smEmail,smAge;
-    SharedPreferences sharedPreferences;
-    Editor edit;
+     SharedPreferences sharedPreferences;
+    SharedPreferences.Editor edit;
     String [] genderlist = {"Male","Female","Other"};;
     private FirebaseFirestore fdb=FirebaseFirestore.getInstance();
     private CollectionReference cref=fdb.collection("Users");
@@ -54,12 +54,12 @@ public class InformationForm extends AppCompatActivity {
                 smEmail=mEmail.getText().toString();
                 edit.putString("userName",smName);
                 edit.commit();
-                UserDetails userDetails =new UserDetails(smName,smEmail,smAge,"USER",gender);
+                UserDetails userDetails =new UserDetails(smName,smEmail,smAge,"USER",gender,0,0);
                 cref.document(smName).set(userDetails).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Toast.makeText(InformationForm.this,"Welcome to the family!!",Toast.LENGTH_LONG).show();
-                        startActivity(new Intent(InformationForm.this,MainActivity.class));
+                        startActivity(new Intent(InformationForm.this,UserMain.class));
                         finish();
                     }
                 }).addOnFailureListener(new OnFailureListener() {

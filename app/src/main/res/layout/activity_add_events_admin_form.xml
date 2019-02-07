@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:text="Enter your details"
+            android:text="Enter the event details"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="25sp"
@@ -34,10 +34,10 @@
 
         <AutoCompleteTextView
 
-            android:id="@+id/register_username"
+            android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter your name"
+            android:hint="Enter the title"
             android:imeOptions="actionNext"
             android:inputType="textNoSuggestions"
             android:maxLines="1"
@@ -60,10 +60,10 @@
         >
 
         <AutoCompleteTextView
-            android:id="@+id/register_email"
+            android:id="@+id/date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter your email"
+            android:hint="Enter the date"
             android:imeOptions="actionNext"
             android:inputType="textEmailAddress"
             android:maxLines="1"
@@ -88,10 +88,10 @@
         >
 
         <AutoCompleteTextView
-            android:id="@+id/register_age"
+            android:id="@+id/venue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter your age"
+            android:hint="Enter the venue"
             android:imeOptions="actionNone"
             android:inputType="textEmailAddress"
             android:maxLines="1"
@@ -104,25 +104,18 @@
     </android.support.design.widget.TextInputLayout>
 
 
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/gender_spinner"
-        android:prompt="@string/app_name"
-        >
 
-    </Spinner>
 
     <Button
         android:layout_marginTop="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/register_button"
-        android:layout_marginRight="25dp"
-        android:layout_marginLeft="25dp"
+        android:id="@+id/save_button"
+        android:layout_marginRight="95dp"
+        android:layout_marginLeft="95dp"
         android:background="@drawable/red_button"
-        android:text="Save"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white"
+        android:text="Save"/>
 
 
 </LinearLayout>

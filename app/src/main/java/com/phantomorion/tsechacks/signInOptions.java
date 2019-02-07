@@ -1,6 +1,8 @@
 package com.phantomorion.tsechacks;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
@@ -28,13 +30,15 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class signInOptions extends AppCompatActivity implements View.OnClickListener {
+public class signInOptions extends AppCompatActivity implements View.OnClickListener,adminLogin.OnFragmentInteractionListener {
     private final int RC_SIGN_IN = 1;
     static GoogleSignInClient mGoogleSignInClient;
-    FirebaseAuth mAuth;
+    static FirebaseAuth mAuth;
     Button googleSignIn;
-    Button pnoSignIn;
+    Button pnoSignIn,admin;
     FragmentManager fm;
+    SharedPreferences.Editor edit;
+    SharedPreferences spref;
     private FirebaseFirestore fdb=FirebaseFirestore.getInstance();
     private CollectionReference cref=fdb.collection("Users");
 
@@ -47,10 +51,13 @@ public class signInOptions extends AppCompatActivity implements View.OnClickList
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
+        spref=getSharedPreferences("userName",MODE_PRIVATE);
         mGoogleSignInClient = GoogleSignIn.getClient(signInOptions.this, gso);
         googleSignIn = (Button) findViewById(R.id.googleSignIn);
+        admin=(Button)findViewById(R.id.adminL);
         googleSignIn.setOnClickListener(this);
         pnoSignIn=findViewById(R.id.pnoSignIn);
+        admin.setOnClickListener(this);
         pnoSignIn.setOnClickListener(this);
         fm=getSupportFragmentManager();
     }
@@ -64,7 +71,9 @@ public class signInOptions extends AppCompatActivity implements View.OnClickList
             case R.id.pnoSignIn:
                 fm.beginTransaction().replace(R.id.mainFrag,new pNoFrag()).addToBackStack(null).commit();
                 break;
-
+            case R.id.adminL:
+                fm.beginTransaction().replace(R.id.mainFrag,new adminLogin()).addToBackStack(null).commit();
+                break;
             default:
                 Toast.makeText(signInOptions.this, "Impropper selection", Toast.LENGTH_LONG).show();
 
@@ -120,14 +129,21 @@ public class signInOptions extends AppCompatActivity implements View.OnClickList
                 });
     }
 
-    private void updateUI(FirebaseUser user) {
+    private void updateUI(final FirebaseUser user) {
 
-        UserDetails userDetails =new UserDetails(mAuth.getCurrentUser().getDisplayName(),mAuth.getCurrentUser().getEmail(),""+19,"USER","Male");
+        UserDetails userDetails =new UserDetails(mAuth.getCurrentUser().getDisplayName(),mAuth.getCurrentUser().getEmail(),""+19,"USER","Male",0,0);
         cref.document(mAuth.getCurrentUser().getDisplayName()).set(userDetails).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
+                edit=spref.edit();
                 Toast.makeText(signInOptions.this,"Welcome to the family!!",Toast.LENGTH_LONG).show();
-                startActivity(new Intent(signInOptions.this,MainActivity.class));
+                edit.putString("userName",user.getDisplayName());
+
+                edit.commit();
+                Intent intent=new Intent(signInOptions.this,UserMain.class);
+                String uri=String.valueOf(mAuth.getCurrentUser().getPhotoUrl());
+                intent.putExtra("URL",uri);
+                startActivity(intent);
                 finish();
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -140,5 +156,9 @@ public class signInOptions extends AppCompatActivity implements View.OnClickList
     }
 
 
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
+}
     //Google SignIn End
